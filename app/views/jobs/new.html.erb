@@ -1,0 +1,14 @@
+<h1>Novo culto</h1>
+
+<%= simple_form_for @job  do |f| %>
+<%= f.input :title %>
+<%= f.input :date %>
+<%= f.input :address %>
+<%= f.input :description %>
+<%= f.input :issue %>
+<%= f.input :owner %>
+<%= f.input :contact %>
+<%= f.button :submit, class:"btn btn-primary" %>
+<br>
+
+<% end %>
