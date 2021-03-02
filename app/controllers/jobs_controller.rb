@@ -9,9 +9,29 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = Job.new
-    @job.save
+    @job = Job.new(job_params)
+    @job.user = current_user
+    if @job.save
+      redirect_to job_path(@job)
+    else
+      render :new
+    end
   end
 
+  def show
+    find_job
+  end
+
+  private
+
+  def job_params
+    params.require(:job).permit(:title, :description, :date, :time, :address,
+    :issue, :owner, :contact)
+  end
+
+   def find_job
+    @job = Job.find(params[:id])
+  end
 
 end
+
