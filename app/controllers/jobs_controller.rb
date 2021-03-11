@@ -32,6 +32,12 @@ class JobsController < ApplicationController
     redirect_to job_path(@job)
   end
 
+  def destroy
+    find_job
+    @job.destroy
+    redirect_to jobs_path
+  end
+
   private
 
   def job_params
