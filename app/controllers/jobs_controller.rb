@@ -22,6 +22,22 @@ class JobsController < ApplicationController
     find_job
   end
 
+  def edit
+    find_job
+  end
+
+  def update
+    find_job
+    @job.update(job_params)
+    redirect_to job_path(@job)
+  end
+
+  def destroy
+    find_job
+    @job.destroy
+    redirect_to jobs_path
+  end
+
   private
 
   def job_params
