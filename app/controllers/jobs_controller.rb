@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+  before_action :find_job, only: [:show, :edit, :update, :destroy]
 
   def index
     @job = Job.all
@@ -6,11 +7,13 @@ class JobsController < ApplicationController
 
   def new
     @job = Job.new
+    authorize @job
   end
 
   def create
     @job = Job.new(job_params)
     @job.user = current_user
+    authorize @job
     if @job.save
       redirect_to job_path(@job)
     else
@@ -19,21 +22,18 @@ class JobsController < ApplicationController
   end
 
   def show
-    find_job
+    authorize @job
   end
 
   def edit
-    find_job
   end
 
   def update
-    find_job
     @job.update(job_params)
     redirect_to job_path(@job)
   end
 
   def destroy
-    find_job
     @job.destroy
     redirect_to jobs_path
   end
