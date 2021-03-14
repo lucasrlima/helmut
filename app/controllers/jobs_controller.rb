@@ -3,7 +3,7 @@ class JobsController < ApplicationController
 
   def index
     #@job = Job.all
-    @job = policy_scope(Job).order(title: :asc).limit(10)
+    @jobs = policy_scope(Job).order(title: :asc).limit(10)
   end
 
   def new

@@ -1,12 +1,10 @@
 class JobPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      #scope ==> Job
+      #seria scope.all para liberar todas instâncias
+      scope.where(user: user)
     end
-  end
-
-  def index?
-    scope.all
   end
 
   def new?
@@ -18,7 +16,7 @@ class JobPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    is_owner?
   end
 
   def edit?
