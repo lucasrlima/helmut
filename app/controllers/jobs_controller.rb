@@ -26,9 +26,11 @@ class JobsController < ApplicationController
   end
 
   def edit
+    authorize @job
   end
 
   def update
+    authorize @job
     @job.update(job_params)
     redirect_to job_path(@job)
   end
