@@ -16,25 +16,25 @@ class JobPolicy < ApplicationPolicy
   end
 
   def show?
-    is_owner?
+    is_owner_or_admin?
   end
 
   def edit?
-    is_owner?
+    is_owner_or_admin?
   end
 
   def update?
-    is_owner?
+    is_owner_or_admin?
   end
 
   def destroy?
-    is_owner?
+    is_owner_or_admin?
   end
 
   private
 
-  def is_owner?
-    record.user == user
+  def is_owner_or_admin?
+    record.user == user || user.admin
   end
 
 end
