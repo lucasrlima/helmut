@@ -3,7 +3,12 @@ class JobsController < ApplicationController
 
   def index
     #@job = Job.all
-    @job = policy_scope(Job).order(title: :asc).limit(10)
+    if current_user.admin
+      @jobs = policy_scope(Job).order(title: :asc).limit(10)
+    else
+      @jobs = policy_scope(Job).where(user: current_user).order(title: :asc).limit(10)
+    end
+
   end
 
   def new

@@ -1,3 +1,5 @@
-<% @job.each do |job| %>
-<h2> <%= link_to job.title, job_path(job) %> </h2>
+<% @jobs.each do |job| %>
+  <%# if job.user == current_user %>
+    <h2> <%= link_to job.title, job_path(job) %> </h2>
+  <%# end %>
 <% end %>

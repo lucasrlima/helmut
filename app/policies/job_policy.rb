@@ -1,12 +1,10 @@
 class JobPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
+      #scope ==> Job
+      #seria scope.where(user: user) para liberar apenas instâncias do usuário
       scope.all
     end
-  end
-
-  def index?
-    scope.all
   end
 
   def new?
@@ -18,25 +16,25 @@ class JobPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    is_owner_or_admin?
   end
 
   def edit?
-    is_owner?
+    is_owner_or_admin?
   end
 
   def update?
-    is_owner?
+    is_owner_or_admin?
   end
 
   def destroy?
-    is_owner?
+    is_owner_or_admin?
   end
 
   private
 
-  def is_owner?
-    record.user == user
+  def is_owner_or_admin?
+    record.user == user || user.admin
   end
 
 end
