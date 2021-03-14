@@ -5,6 +5,10 @@ class JobPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    scope.all
+  end
+
   def new?
     true
   end
@@ -22,6 +26,10 @@ class JobPolicy < ApplicationPolicy
   end
 
   def update?
+    is_owner?
+  end
+
+  def destroy?
     is_owner?
   end
 

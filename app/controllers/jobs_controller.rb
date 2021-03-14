@@ -2,7 +2,8 @@ class JobsController < ApplicationController
   before_action :find_job, only: [:show, :edit, :update, :destroy]
 
   def index
-    @job = Job.all
+    #@job = Job.all
+    @job = policy_scope(Job).order(title: :asc).limit(10)
   end
 
   def new
@@ -22,15 +23,12 @@ class JobsController < ApplicationController
   end
 
   def show
-    authorize @job
   end
 
   def edit
-    authorize @job
   end
 
   def update
-    authorize @job
     @job.update(job_params)
     redirect_to job_path(@job)
   end
@@ -49,6 +47,7 @@ class JobsController < ApplicationController
 
    def find_job
     @job = Job.find(params[:id])
+    authorize @job
   end
 
 end
