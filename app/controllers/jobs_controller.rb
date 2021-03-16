@@ -50,7 +50,7 @@ class JobsController < ApplicationController
     :issue, :owner, :contact)
   end
 
-   def find_job
+  def find_job
     @job = Job.find(params[:id])
     authorize @job
   end
