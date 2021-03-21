@@ -1,2 +1,7 @@
 <h3><%= @profile.first_name%> <%= @profile.last_name%></h3>
+<p><%= @profile.user.email %><p>
+
+<% if policy(@profile).edit? %>
+  <%= link_to "Editar Pauta", edit_profile_path(@profile), class: "btn btn-primary"%>
+<% end %>
 

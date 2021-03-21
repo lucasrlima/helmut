@@ -2,7 +2,7 @@ class JobPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       #scope ==> Job
-      #seria scope.where(user: user) para liberar apenas instâncias do usuário
+      #seria scope.where(user: user) para liberar apenas instâncias do usuário atual
       scope.all
     end
   end
