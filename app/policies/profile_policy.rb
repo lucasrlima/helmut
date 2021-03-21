@@ -13,4 +13,18 @@ class ProfilePolicy < ApplicationPolicy
     true
   end
 
+  def edit?
+    is_owner_or_admin?
+  end
+
+  def update?
+    is_owner_or_admin?
+  end
+  
+  private
+
+  def is_owner_or_admin?
+    record.user == user || user.admin
+  end
+
 end

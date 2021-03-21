@@ -25,6 +25,16 @@ class ProfilesController < ApplicationController
     @profiles = policy_scope(Profile).order(first_name: :asc)
   end
 
+  def edit
+    find_profile
+  end
+
+  def update
+    find_profile
+    @profile.update(profile_params)
+    redirect_to profile_path(@profile)
+  end
+
   private
 
   def profile_params
