@@ -21,6 +21,10 @@ class ProfilesController < ApplicationController
     find_profile
   end
 
+  def index
+    @profiles = policy_scope(Profile).order(first_name: :asc)
+  end
+
   private
 
   def profile_params
