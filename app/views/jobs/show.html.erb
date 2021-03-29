@@ -17,3 +17,7 @@
               method: :delete,
               data: { confirm: "Você tem certeza?" } %>
 <% end %>
+
+<% if current_user.admin %>
+  <%= link_to 'Pautar Fotógrafo', new_job_skill_path(@job), class: "btn btn-danger" %>
+<% end %>
