@@ -9,6 +9,10 @@ class SkillPolicy < ApplicationPolicy
     is_admin?
   end
 
+  def create?
+    is_admin?
+  end
+
   private
 
   def is_admin?
