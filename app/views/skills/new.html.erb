@@ -1,3 +1,6 @@
 <% @profiles.each do |profile| %>
-    <h2> <%= link_to profile.first_name, profile_path(profile) %> </h2>
+    <%= simple_form_for [ @job, @skill ] do |f| %>
+        <h2> <%= link_to profile.first_name, profile_path(profile) %> </h2>
+            <%= f.submit "Pautar", class: "btn btn-primary" %>
+    <% end %>
 <% end %>
