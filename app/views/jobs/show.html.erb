@@ -7,6 +7,10 @@
 <p><%= @job.owner %></p>
 <p><%= @job.contact %></p>
 
+<% if @job.skill != nil %>
+<p>O Fotógrafo desta pauta é <%= @job.skill.profile.first_name%> <%=@job.skill.profile.last_name%><p>
+<% end %>
+
 <% if policy(@job).edit? %>
   <%= link_to "Editar Pauta", edit_job_path(@job), class: "btn btn-primary"%>
 <% end %>
@@ -18,6 +22,6 @@
               data: { confirm: "Você tem certeza?" } %>
 <% end %>
 
-<% if current_user.admin %>
+<% if current_user.admin && @job.skill == nil %>
   <%= link_to 'Pautar Fotógrafo', new_job_skill_path(@job), class: "btn btn-danger" %>
 <% end %>
