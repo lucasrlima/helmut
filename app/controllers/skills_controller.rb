@@ -8,9 +8,9 @@ class SkillsController < ApplicationController
     end
 
     def create
-        @skill = Skill.new
-        authorize @skill
         find_job
+        @skill = Skill.new(skill_params)
+        authorize @skill
         @skill.job = @job
         
         if @skill.save
@@ -22,12 +22,11 @@ class SkillsController < ApplicationController
     private
 
     def skill_params
-        params.require(:skill).permit(:job_id, :profile_id)
+        params.require(:skill).permit(:profile_id)
     end
     
     def find_job
         @job = Job.find(params[:job_id])
     end
     
-
 end
