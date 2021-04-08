@@ -8,18 +8,24 @@
 <p><%= @job.contact %></p>
 
 <% if @job.skill != nil %>
-<p>O Fotógrafo desta pauta é <%= @job.skill.profile.first_name%> <%=@job.skill.profile.last_name%><p>
+  <p>O Fotógrafo desta pauta é <%= @job.skill.profile.first_name%> <%=@job.skill.profile.last_name%><p>
+  <%= link_to "Alterar fotógrafo",
+                skill_path(@job.skill), class: "btn btn-primary",
+                method: :delete,
+                data: { confirm: "Você tem certeza?" } %>
 <% end %>
+
+
 
 <% if policy(@job).edit? %>
   <%= link_to "Editar Pauta", edit_job_path(@job), class: "btn btn-primary"%>
 <% end %>
 
 <% if policy(@job).destroy? %>
-  <%= link_to "Apagar Pauta",
-              job_path(@job), class: "btn btn-primary",
-              method: :delete,
-              data: { confirm: "Você tem certeza?" } %>
+    <%= link_to "Apagar Pauta",
+                job_path(@job), class: "btn btn-primary",
+                method: :delete,
+                data: { confirm: "Você tem certeza?" } %>
 <% end %>
 
 <% if current_user.admin && @job.skill == nil %>

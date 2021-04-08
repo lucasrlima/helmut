@@ -18,6 +18,14 @@ class SkillsController < ApplicationController
         end
 
     end
+
+    def destroy
+        @skill = Skill.find(params[:id])
+        authorize @skill
+        @skill.destroy
+        redirect_to job_path(@skill.job)
+    end
+    
     
     private
 
