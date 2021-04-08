@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resources :skills, only: [ :new, :create ]
   end
   resources :profiles
+  resources :skills, only: [ :destroy ]
 end

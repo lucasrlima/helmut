@@ -4,7 +4,7 @@ class JobsController < ApplicationController
   def index
     #@job = Job.all
     if current_user.admin
-      @jobs = policy_scope(Job).order(title: :asc).limit(10)
+      @jobs = policy_scope(Job).order(title: :asc).limit(20)
     else
       @jobs = policy_scope(Job).where(user: current_user).order(title: :asc).limit(10)
     end
