@@ -5,7 +5,7 @@ class JobMailerPreview < ActionMailer::Preview
   def newjob
     user = User.first
     job = Job.last
-    UserMailer.with(user: user, job: job).newjob
+    JobMailer.with(user: user, job: job).newjob
   end
 
 end
