@@ -9,14 +9,14 @@
 </style>
 
 
-<p>Olá, <%=@user.profile.first_name%></p>
+<p>Olá, <%=@user.profile.first_name%>.</p>
 
-<p>Sua pauta de foto foi criada.</p>
+<p>Sua pauta fotográfica foi criada.</p>
 
 <h3><strong><%=@job.title %></strong></h3>
 <p><strong>Pauta: </strong><%=@job.description %></p>
-<p><strong>Data: </strong><%=@job.date %></p>
-<p><strong>Horário: </strong><%=@job.time %></p>
+<p><strong>Data: </strong><%=@job.date.strftime("%d/%m/%Y") %></p>
+<p><strong>Horário: </strong><%=@job.time.strftime("%k:%M") %></p>
 <p><strong>Editoria: </strong><%=@job.issue %></p>
 <p><strong>Editor/Repórter: </strong><%=@job.owner %></p>
 <p><strong>Contato: </strong><%=@job.contact %></p>
