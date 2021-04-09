@@ -1,5 +1,22 @@
+<style>
+    h3 {
+        font-family: sans-serif;
+    }
+    p {
+        font-family: sans-serif;
+    }
+
+</style>
+
+
 <p>Olá, <%=@user.profile.first_name%></p>
 
-<h3><%=@job.title %><h2>
-<p><%=@job.description %><p>
+<p>Sua pauta de foto foi criada.</p>
 
+<h3><strong><%=@job.title %></strong></h3>
+<p><strong>Pauta: </strong><%=@job.description %></p>
+<p><strong>Data: </strong><%=@job.date %></p>
+<p><strong>Horário: </strong><%=@job.time %></p>
+<p><strong>Editoria: </strong><%=@job.issue %></p>
+<p><strong>Editor/Repórter: </strong><%=@job.owner %></p>
+<p><strong>Contato: </strong><%=@job.contact %></p>
