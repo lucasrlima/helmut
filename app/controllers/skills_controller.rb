@@ -14,6 +14,7 @@ class SkillsController < ApplicationController
         @skill.job = @job
         
         if @skill.save
+            mail = SkillMailer.with(user: @skill.job.user, job: @job, skill: @skill).new_skill.deliver_now
             redirect_to job_path(@job)
         end
 

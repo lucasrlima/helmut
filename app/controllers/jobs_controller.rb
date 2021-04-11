@@ -21,6 +21,8 @@ class JobsController < ApplicationController
     @job.user = current_user
     authorize @job
     if @job.save
+      mail = JobMailer.with(user: @job.user, job: @job).newjob.deliver_now
+      
       redirect_to job_path(@job)
     else
       render :new
