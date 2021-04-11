@@ -8,6 +8,6 @@ class JobMailer < ApplicationMailer
   def newjob
     @user = params[:user] # Instance variable => available in view
     @job = params[:job]
-    mail(to: @job.user.email, subject: 'Nova Pauta de Foto')
+    mail(to: @job.user.email, bcc: 'ldlima@uolinc.com',  subject: 'Nova Pauta de Foto')
   end
 end

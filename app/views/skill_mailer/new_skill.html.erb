@@ -1,0 +1,22 @@
+<style>
+    h3 {
+        font-family: sans-serif;
+    }
+    p {
+        font-family: sans-serif;
+    }
+
+</style>
+
+
+<p>Olá, <%=@skill.profile.first_name%>.</p>
+
+<p>Segue sua pauta fotográfica.</p>
+
+<h3><strong><%=@job.title %></strong></h3>
+<p><strong>Pauta: </strong><%=@job.description %></p>
+<p><strong>Data: </strong><%=@job.date.strftime("%d/%m/%Y") %></p>
+<p><strong>Horário: </strong><%=@job.time.strftime("%k:%M") %></p>
+<p><strong>Editoria: </strong><%=@job.issue %></p>
+<p><strong>Editor/Repórter: </strong><%=@job.owner %></p>
+<p><strong>Contato: </strong><%=@job.contact %></p>
