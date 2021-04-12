@@ -1,7 +1,7 @@
 class SkillsController < ApplicationController
 
     def new
-        @profiles = policy_scope(Profile).order(first_name: :asc)
+        @profiles = policy_scope(Profile).where(role: "Fotógrafo").order(first_name: :asc)
         find_job
         @skill = Skill.new
         authorize @skill
