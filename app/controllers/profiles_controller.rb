@@ -22,7 +22,7 @@ class ProfilesController < ApplicationController
   end
 
   def index
-    @profiles = policy_scope(Profile).order(first_name: :asc)
+    @profiles = policy_scope(Profile).where(role: "Fotógrafo").order(first_name: :asc)
   end
 
   def edit
@@ -38,7 +38,7 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:first_name, :last_name)
+    params.require(:profile).permit(:first_name, :last_name, :role)
   end
 
   def find_profile
