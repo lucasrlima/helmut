@@ -26,6 +26,23 @@ class SkillsController < ApplicationController
         @skill.destroy
         redirect_to job_path(@skill.job)
     end
+
+    def index
+        if current_user.admin
+            @skills = policy_scope(Skill).order(created_at: :asc).limit(20)
+        elsif current_user.profile.role = "Fotógrafo"
+            @skills = policy_scope(Skill).where(profile: current_user.profile)
+            
+        else
+            @skills = policy_scope(Skill).where(job: current_user.job).order(title: :asc).limit(10)
+            raise
+        end
+    end
+
+    def show
+        find_skill
+        authorize @skill
+    end
     
     
     private
@@ -37,5 +54,11 @@ class SkillsController < ApplicationController
     def find_job
         @job = Job.find(params[:job_id])
     end
+
+    def find_skill
+        
+        @skill = Skill.find(params[:id])
+    end
+    
     
 end
