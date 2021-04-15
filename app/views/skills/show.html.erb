@@ -1,0 +1,9 @@
+<h1><%= @skill.job.title%></h1>
+
+<h2><%= @skill.job.description %></h2>
+<p><%= @skill.job.date.strftime("%d/%m/%Y") %></p>
+<p><%= @skill.job.issue %></p>
+<p><%= @skill.job.description %></p>
+<p><%= @skill.job.owner %></p>
+<p><%= @skill.job.contact %></p>
+<h2>Fotógrafo: <%= @skill.profile.first_name + " " + @skill.profile.last_name%></h2>
