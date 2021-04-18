@@ -3,12 +3,15 @@ class JobsController < ApplicationController
 
   def index
     #@job = Job.all
-    if current_user.admin
+    if current_user.admin && params[:query].present?
+      @jobs = policy_scope(Job).job_global_search(params[:query])
+    elsif current_user.admin 
       @jobs = policy_scope(Job).order(title: :asc).limit(20)
-    else
+    elsif params[:query].present?
+      @jobs = policy_scope(Job).job_global_search(params[:query]).where(user: current_user)
+    else 
       @jobs = policy_scope(Job).where(user: current_user).order(title: :asc).limit(10)
     end
-
   end
 
   def new
