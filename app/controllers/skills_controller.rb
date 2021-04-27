@@ -28,14 +28,22 @@ class SkillsController < ApplicationController
     end
 
     def index
-        if current_user.admin
+        if current_user.admin && params[:query].present?
+            @skills = policy_scope(Skill).skill_global_search(params[:query])
+            
+        elsif current_user.admin
             @skills = policy_scope(Skill).order(created_at: :asc).limit(20)
-        elsif current_user.profile.role = "Fotógrafo"
+            
+        elsif current_user.profile.role == "Fotógrafo" && params[:query].present?
+            @skills = policy_scope(Skill).where(profile: current_user.profile).skill_global_search(params[:query])
+            
+        elsif current_user.profile.role == "Fotógrafo"
             @skills = policy_scope(Skill).where(profile: current_user.profile)
             
+        elsif current_user.profile.role == 'Jornalista'
+            @skills = policy_scope(Skill).where(job: job)
         else
-            @skills = policy_scope(Skill).where(job: current_user.job).order(title: :asc).limit(10)
-            raise
+            @skills = []
         end
     end
 
