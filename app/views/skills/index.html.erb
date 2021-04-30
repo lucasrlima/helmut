@@ -1,3 +1,12 @@
+<%= form_tag skills_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Encontre sua pauta"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
 <% @skills.each do |skill| %>
   <%# if job.user == current_user %>
     <h2> <%= link_to skill.job.title, skill_path(skill) %> </h2>

@@ -22,7 +22,11 @@ class ProfilesController < ApplicationController
   end
 
   def index
-    @profiles = policy_scope(Profile).where(role: "Fotógrafo").order(first_name: :asc)
+    if params[:query].present?
+      @profiles = policy_scope(Profile).search_profile_index(params[:query]).where(role: "Fotógrafo")
+    else
+      @profiles = policy_scope(Profile).where(role: "Fotógrafo").order(first_name: :asc)
+    end 
   end
 
   def edit
