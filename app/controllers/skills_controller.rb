@@ -41,7 +41,7 @@ class SkillsController < ApplicationController
             @skills = policy_scope(Skill).where(profile: current_user.profile)
             
         elsif current_user.profile.role == 'Jornalista'
-            @skills = policy_scope(Skill).where(job: job)
+            @skills = policy_scope(Skill).where(job: current_user)
         else
             @skills = []
         end

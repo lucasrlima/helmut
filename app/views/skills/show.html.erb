@@ -7,3 +7,4 @@
 <p><%= @skill.job.owner %></p>
 <p><%= @skill.job.contact %></p>
 <h2>Fotógrafo: <%= @skill.profile.first_name + " " + @skill.profile.last_name%></h2>
+<p>Pauta criada por: <%= @skill.job.user.profile.first_name + " " + @skill.job.user.profile.last_name %></p>
