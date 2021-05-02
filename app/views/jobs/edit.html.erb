@@ -9,6 +9,8 @@
 <%= f.input :issue %>
 <%= f.input :owner %>
 <%= f.input :contact %>
+<%= f.input :done, as: :boolean, as: :radio_buttons%>
+<%# f.input :done, as: :boolean, checked_value: true, unchecked_value: false %>
 <%= f.button :submit, class:"btn btn-primary" %>
 <br>
 
