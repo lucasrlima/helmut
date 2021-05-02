@@ -7,12 +7,22 @@
 <p><%= @job.owner %></p>
 <p><%= @job.contact %></p>
 
-<% if @job.skill != nil %>
+<% if @job.done == true %>
+  <p><strong>Está pauta foi Finalizada</strong></p>
+<% elsif @job.done == false && @job.skill == nil%>
+  <p>Pauta em Aberto</p>
+<% else %>
+  <p><strong>EM ANDAMENTO</strong></p>
+<% end %>
+
+<% if @job.skill != nil && @job.done == true %>
+    <p>O Fotógrafo desta pauta foi <%= @job.skill.profile.first_name%> <%=@job.skill.profile.last_name%><p>
+<% elsif @job.skill != nil %>
   <p>O Fotógrafo desta pauta é <%= @job.skill.profile.first_name%> <%=@job.skill.profile.last_name%><p>
   <%= link_to "Alterar fotógrafo",
                 skill_path(@job.skill), class: "btn btn-primary",
                 method: :delete,
-                data: { confirm: "Você tem certeza?" } %>
+                data: { confirm: "Você tem certeza?" } %>  
 <% end %>
 
 
@@ -30,4 +40,9 @@
 
 <% if current_user.admin && @job.skill == nil %>
   <%= link_to 'Pautar Fotógrafo', new_job_skill_path(@job), class: "btn btn-danger" %>
+<% end %>
+
+<%= simple_form_for @job do |f| %>
+  <%= f.hidden_field :done, value: true %>
+  <%= f.submit "Finalizar Pauta", class: "btn btn-primary" %>
 <% end %>
