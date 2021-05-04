@@ -10,7 +10,7 @@
 <% if @job.done == true %>
   <p><strong>Está pauta foi Finalizada</strong></p>
 <% elsif @job.done == false && @job.skill == nil%>
-  <p>Pauta em Aberto</p>
+  <p><strong>Pauta em Aberto</strong></p>
 <% else %>
   <p><strong>EM ANDAMENTO</strong></p>
 <% end %>
@@ -42,7 +42,10 @@
   <%= link_to 'Pautar Fotógrafo', new_job_skill_path(@job), class: "btn btn-danger" %>
 <% end %>
 
-<%= simple_form_for @job do |f| %>
-  <%= f.hidden_field :done, value: true %>
-  <%= f.submit "Finalizar Pauta", class: "btn btn-primary" %>
+<% if @job.done == false && current_user.admin && @job.skill != nil  %>
+  <%= simple_form_for @job do |f| %>
+    <%= f.hidden_field :done, value: true %>
+    <%= f.submit "Finalizar Pauta", class: "btn btn-primary", 
+        data: { confirm: "Finalizar pauta?" } %>
+  <% end %>
 <% end %>
