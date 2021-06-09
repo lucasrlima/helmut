@@ -1,7 +1,11 @@
 class SkillsController < ApplicationController
 
     def new
-        @profiles = policy_scope(Profile).where(role: "Fotógrafo").order(first_name: :asc)
+        if params[:query].present?
+            @profiles = policy_scope(Profile).search_profile_index(params[:query]).where(role: "Fotógrafo")
+        else
+            @profiles = policy_scope(Profile).where(role: "Fotógrafo").order(first_name: :asc)
+        end
         find_job
         @skill = Skill.new
         authorize @skill

@@ -10,4 +10,11 @@ class JobMailer < ApplicationMailer
     @job = params[:job]
     mail(to: @job.user.email, bcc: 'ldlima@uolinc.com',  subject: 'Nova Pauta de Foto')
   end
+
+  def job_updated
+    @user = params[:user] 
+    @job = params[:job]
+    mail(to: @job.user.email, bcc: 'ldlima@uolinc.com',  subject: 'Pauta de Foto atualizada')
+  end
+
 end

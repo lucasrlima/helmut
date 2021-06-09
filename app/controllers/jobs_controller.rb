@@ -40,7 +40,7 @@ class JobsController < ApplicationController
 
   def update
     @job.update(job_params)
-    mail = JobMailer.with(user: @job.user, job: @job).newjob.deliver_now
+    mail = JobMailer.with(user: @job.user, job: @job).job_updated.deliver_now
     redirect_to job_path(@job)
   end
 
