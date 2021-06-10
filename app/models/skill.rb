@@ -1,6 +1,7 @@
 class Skill < ApplicationRecord
   belongs_to :job
   belongs_to :profile
+  has_one :payment
 
   include PgSearch::Model
   pg_search_scope :skill_global_search,
