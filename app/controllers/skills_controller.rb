@@ -68,7 +68,6 @@ class SkillsController < ApplicationController
     end
 
     def find_skill
-        
         @skill = Skill.find(params[:id])
     end
     
