@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   end
   resources :profiles
   resources :skills, only: [ :destroy, :index, :show ]
-  resources :payments, only: [ :new, :create, :show ]
+  resources :skills do 
+    resources :payments, only: [ :new, :create ]
+  end
+  
 end

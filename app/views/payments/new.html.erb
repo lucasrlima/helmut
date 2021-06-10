@@ -1,6 +1,6 @@
 <h1>Novo Pagamento</h1>
 
-<%= simple_form_for @payment do |f| %>
+<%= simple_form_for [@skill, @payment] do |f| %>
 <%= f.input :fee%>
 <%= f.button :submit, class:"btn btn-primary" %>
 <br>

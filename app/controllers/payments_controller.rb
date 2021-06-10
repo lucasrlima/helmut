@@ -1,13 +1,19 @@
 class PaymentsController < ApplicationController
 
     def new
+        find_skill
         @payment = Payment.new
         authorize @payment
     end
     
     def create
+        find_skill
         @payment = Payment.new(payment_params)
         authorize @payment
+        @payment.skill = @skill
+        if @payment.save 
+            redirect_to skill_path(@skill)
+        end
     end
     
 
@@ -18,7 +24,7 @@ class PaymentsController < ApplicationController
     end
 
     def find_skill
-        @skill = Skill.find(params[:id])
+        @skill = Skill.find(params[:skill_id])
     end
 
 end
