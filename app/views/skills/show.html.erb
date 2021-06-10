@@ -13,6 +13,6 @@
 <p>Valor da pauta: R$<%= @skill.payment.fee  %>,00</p>
 <% end %>
 
-<% if current_user.admin %>
+<% if current_user.admin && @skill.payment == nil %>
   <%= link_to 'Gerar Pagamento', new_skill_payment_path(@skill), class: "btn btn-danger" %>
 <% end %>
