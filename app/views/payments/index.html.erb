@@ -1,0 +1,5 @@
+<% @payments.each do |payment| %>
+ 
+    <h2> <%= link_to payment.total, payment_path(payment) %> </h2>
+
+ <% end %>

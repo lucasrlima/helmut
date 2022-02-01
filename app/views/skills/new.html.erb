@@ -10,6 +10,7 @@
 <% @profiles.each do |profile| %>
     <%= simple_form_for [ @job, @skill ] do |f| %>
         <h2> <%= link_to profile.first_name, profile_path(profile) %> </h2>
+            <%= f.input :fee %>
             <%= f.hidden_field :profile_id, value: profile.id %>
             <%= f.submit "Pautar", class: "btn btn-primary" %>
     <% end %>

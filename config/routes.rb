@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   resources :skills do 
     resources :payments, only: [ :new, :create ]
   end
-  
+  resources :payments, only: [ :destroy, :index, :show ]
+
 end

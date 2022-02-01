@@ -60,7 +60,7 @@ class SkillsController < ApplicationController
     private
 
     def skill_params
-        params.require(:skill).permit(:profile_id)
+        params.require(:skill).permit(:profile_id, :fee)
     end
     
     def find_job
