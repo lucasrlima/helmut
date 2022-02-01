@@ -9,10 +9,21 @@
 <h2>Fotógrafo: <%= @skill.profile.first_name + " " + @skill.profile.last_name%></h2>
 <p>Pauta criada por: <%= @skill.job.user.profile.first_name + " " + @skill.job.user.profile.last_name %></p>
 
+<% if @skill.fee != nil %>
+<p>Valor da pauta: R$<%= @skill.fee  %>,00</p>
+<% end %>
+
 <% if @skill.payment != nil %>
-<p>Valor da pauta: R$<%= @skill.payment.fee  %>,00</p>
+<p>Valor da pauta: R$<%= @skill.fee  %>,00</p>
+<p>Despesas: R$<%= @skill.payment.spending  %></p>
+<p>Total: R$<%= @skill.payment.total  %></p>
 <% end %>
 
 <% if current_user.admin && @skill.payment == nil %>
   <%= link_to 'Gerar Pagamento', new_skill_payment_path(@skill), class: "btn btn-danger" %>
 <% end %>
+
+<% if current_user.profile.role == "Fotógrafo" && @skill.payment == nil && @skill.job.done?%>
+  <%= link_to 'Gerar Pagamento', new_skill_payment_path(@skill), class: "btn btn-danger" %>
+<% end %>
+

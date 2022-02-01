@@ -1,6 +1,8 @@
-<h1>Novo Pagamento</h1>
+<h1>Enviar Nota Fiscal</h1>
 
-<%= simple_form_for [@skill, @payment] do |f| %>
+<%=@skill.fee%>
+
+<%= simple_form_for  @payment do |f| %>
 <%= f.input :spending%>
 <%= f.button :submit, class:"btn btn-primary" %>
 <br>
